@@ -105,6 +105,16 @@ body{padding-bottom:24px!important}
 .mecanismo i{display:block;font-style:normal;font-size:12px;font-weight:800;letter-spacing:2px;color:var(--lima)}
 .mecanismo b{display:block;color:#fff;font-size:20px;line-height:1.3;margin:8px 0}
 .mecanismo span{font-size:15px;line-height:1.5;color:#E6F0D2}
+/* v2: protocolo trancado (o valor real nunca vai para a tela, só um texto de enfeite borrado) */
+.borrado{filter:blur(7px);user-select:none;-webkit-user-select:none;pointer-events:none}
+a.trava,a.semanas{display:block;text-decoration:none;color:inherit}
+.relogio a.trava{background:var(--verde-claro);border-radius:16px;padding:12px 6px;border:2px dashed var(--lima-esc)}
+.cad{display:block;font-size:13px;font-weight:800;color:var(--laranja-esc)}
+.semanas{display:grid;gap:8px;border:2px dashed var(--lima-esc);border-radius:16px;padding:12px;background:#fff}
+.semanas div{background:var(--verde-claro);border-radius:12px;padding:10px 12px;text-align:left}
+.semanas b{display:block;font-size:15px;color:var(--verde-esc)}.semanas div span{display:block;font-size:14px;color:var(--texto)}
+.cad-faixa{font-size:14px;font-weight:700;color:var(--laranja-esc);text-align:center;line-height:1.4;margin-top:4px}
+.chip{display:block;text-align:center;font-size:15px;font-weight:700;color:var(--verde-esc)}
 </style></head><body>
 <div class="blob b1"></div><div class="blob b2"></div>
 <div class="topo"><div class="selo"><span class="ck">✓</span><span class="tx">Compra aprovada</span></div></div>
@@ -127,14 +137,22 @@ body{padding-bottom:24px!important}
 
 <div id="tela-plano" hidden>
 <button type="button" class="voltar" id="refazer">‹ Voltar</button>
-<span class="eyebrow">Pronto</span>
-<h1 style="margin-top:4px">Seu plano de jejum</h1>
+<span class="eyebrow">Seu diagnóstico</span>
+<h1 style="margin-top:4px" id="r-meta"></h1>
 <section class="calc" aria-live="polite">
-<div class="relogio">
-<div><small>Começa</small><b id="r-ini"></b><span>depois do jantar</span></div>
-<div><small>Termina</small><b id="r-fim"></b><span>do dia seguinte</span></div>
-</div>
 <div class="plano" id="r-plano"></div>
+<div class="relogio" style="margin-top:14px">
+<div><small>Começa</small><b id="r-ini"></b><span>depois do jantar</span></div>
+<a class="trava" href="https://pay.hotmart.com/N107970684W?off=8oyyimoe&src=upsell-quiz" aria-label="Hora de terminar o jejum: liberada no app"><small>Termina</small><b aria-hidden="true"><span class="borrado">00h</span></b><span class="cad">🔒 Liberado no app</span></a>
+</div>
+<h2 style="margin-top:20px">Seu passo a passo de 30 dias</h2>
+<a class="semanas" href="https://pay.hotmart.com/N107970684W?off=8oyyimoe&src=upsell-quiz" aria-label="Passo a passo semana a semana: liberado no app">
+<div><b>Semana 1 · Adaptação</b><span class="borrado" aria-hidden="true">Seu horário deste período aparece aqui</span></div>
+<div><b>Semana 2 · Ajuste</b><span class="borrado" aria-hidden="true">Seu horário deste período aparece aqui</span></div>
+<div><b>Semana 3 · Aceleração</b><span class="borrado" aria-hidden="true">Seu horário deste período aparece aqui</span></div>
+<div><b>Semana 4 · Barriga secando</b><span class="borrado" aria-hidden="true">Seu horário deste período aparece aqui</span></div>
+<p class="cad-faixa">🔒 Seu plano já está montado. Ele abre no app assim que você entra.</p>
+</a>
 </section>
 
 <section class="mecanismo">
@@ -149,7 +167,8 @@ body{padding-bottom:24px!important}
 <section class="calc" style="text-align:center">
 <h2 style="margin-top:0" id="r-hoje"></h2>
 <div class="preco"><s class="de">De R$ 47,00</s><b>R$ 19,90</b><span>por mês</span><em>Menos de R$ 0,70 por dia.</em></div>
-<a class="cta" href="https://pay.hotmart.com/N107970684W?off=8oyyimoe&src=upsell-quiz">QUERO SECAR MINHA BARRIGA MAIS RÁPIDO</a>
+<a class="cta" href="https://pay.hotmart.com/N107970684W?off=8oyyimoe&src=upsell-quiz">QUERO LIBERAR MEU PLANO E SECAR MAIS RÁPIDO</a>
+<p class="chip">🔒 Hora de terminar e passo a passo abrem no app.</p>
 </section>
 
 <p class="ouca">Ouça a Carol explicando em 30 segundos ▼</p>
@@ -293,16 +312,17 @@ function pergunta(){
 }
 function plano(){
  var h=r.horas,j=r.jantar,t=55*SONO+78*(h-SONO),p=Math.round(55*SONO/t*100);
- $('r-ini').textContent=j+'h';$('r-fim').textContent=((j+h)%24)+'h';
+ // v2: horas, hora de terminar e progressão ficam só no app; aqui vai diagnóstico e promessa
+ var NIVEL={12:'Leve',14:'Moderado',16:'Intenso'};
+ $('r-ini').textContent=j+'h';
+ $('r-meta').textContent='Até '+MES[h]+' kg a menos em 30 dias.';
  $('r-plano').innerHTML=
- '<span>São <b>'+h+' horas de jejum</b>, e <b>'+SONO+' delas você está dormindo</b>. Acordada, sobram '+(h-SONO)+' horas, e o app te acompanha nelas.</span>'+
- (h>12?'<span>Você começa com 12 horas na primeira semana e sobe para '+h+' quando o corpo já se acostumou.</span>':'<span>12 horas é o jeito leve de começar. Se quiser mais resultado, o app te ajuda a subir para 14.</span>')+
- '<span>Nessas '+h+' horas, seu corpo queima cerca de <b>'+t.toLocaleString('pt-BR')+' calorias</b> sem nada entrando. <b>'+p+'% delas enquanto você dorme.</b></span>'+
- '<span>Somando o chá e o jejum, são até <b>'+kg(MES[h]/4)+' kg por semana</b>.</span>'+
- '<strong class="kg">Até '+MES[h]+' kg a menos em 30 dias.</strong>'+
- '<small>As alunas que juntam o chá e o jejum perdem em média de 5 a 10 kg em 30 dias. O resultado varia de pessoa para pessoa.</small>'+
- '<span class="dica">'+DICA[r.fome]+'</span>';
- $('r-hoje').innerHTML='Seu chá já está a caminho.<br>Seu primeiro jejum começa hoje, às '+j+'h.';
+ '<span>'+DICA[r.fome]+'</span>'+
+ '<span class="dica"><b>Seu jejum: nível '+NIVEL[h]+'.</b> A maior parte dele acontece enquanto você dorme.</span>'+
+ '<span>Seu corpo queima cerca de <b>'+t.toLocaleString('pt-BR')+' calorias</b> em cada jejum, <b>'+p+'% delas dormindo.</b></span>'+
+ '<strong class="kg">Até '+kg(MES[h]/4)+' kg por semana</strong>'+
+ '<small>Somando o chá e o jejum. As alunas que juntam os dois perdem em média de 5 a 10 kg em 30 dias. O resultado varia de pessoa para pessoa.</small>';
+ $('r-hoje').innerHTML='Seu plano está pronto.<br>Libere no app e comece hoje, às '+j+'h.';
 }
 function mostrar(fim){
  $('tela-quiz').hidden=fim;$('tela-plano').hidden=!fim;
