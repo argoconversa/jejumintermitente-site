@@ -315,5 +315,14 @@ $('voltar').addEventListener('click',function(){passo--;pergunta();});
 $('refazer').addEventListener('click',function(){passo=2;mostrar(false);});
 pergunta();
 })();</script>
+<script>(function(){
+// medição do funil (25/10): só o nome da etapa vai para o portal, uma vez por visita
+var U='https://aluna.metodomusafit.com.br/integracao/upsell-jejum/evento';
+function m(e){try{if(sessionStorage.getItem('m_'+e))return;sessionStorage.setItem('m_'+e,'1')}catch(_){}try{navigator.sendBeacon(U,e)}catch(_){}}
+m('pagina');
+document.getElementById('opcoes').addEventListener('click',function(e){if(e.target.closest('.opcao'))m('quiz_inicio')});
+document.getElementById('seguir').addEventListener('click',function(){if(!document.getElementById('tela-plano').hidden)m('quiz_fim')});
+document.querySelectorAll('a[href*="pay.hotmart.com"]').forEach(function(a){a.addEventListener('click',function(){m('checkout')})});
+})();</script>
 
 </body></html>
