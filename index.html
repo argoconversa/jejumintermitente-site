@@ -83,39 +83,77 @@ h1{font-size:38px;margin:22px 0 12px}
 .relato{text-align:center;font-size:12px;color:#7b8866;margin:-6px 0 14px}
 .cuidado{text-align:center;font-size:13px;color:#6b7a52;margin:26px 8px 6px;line-height:1.5}
 body{padding-bottom:24px!important}
+.eyebrow{display:block;text-align:center;font-size:12px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--lima-esc)}
+.quiz{padding-top:18px}.quiz .eyebrow{margin-top:14px}
+.quiz h2{font-size:23px;margin:6px 0 4px}
+.q-sub{text-align:center;font-size:15px;color:#617047;margin-bottom:16px}
+.voltar{border:0;background:none;font:inherit;font-weight:700;color:var(--verde-med);cursor:pointer;min-height:40px;padding:0;margin-bottom:6px}
+.passos{display:flex;gap:6px}.passos i{flex:1;height:6px;border-radius:999px;background:#E4ECD3}.passos i.on{background:var(--verde-med)}
+.opcoes{display:grid;gap:10px}
+.opcao{display:flex;align-items:center;gap:12px;padding:14px;border-radius:16px;border:2px solid #DDEBBE;background:var(--verde-claro);font:inherit;text-align:left;color:var(--verde-esc);min-height:64px;cursor:pointer;width:100%}
+.opcao b{display:block;font-size:16.5px;line-height:1.3}.opcao small{display:block;font-size:13.5px;color:#617047;line-height:1.4}
+.opcao .r{flex:none;width:22px;height:22px;border-radius:50%;border:2px solid #C9DCA0;background:#fff}
+.opcao[aria-checked="true"]{border-color:var(--verde-med);background:#fff}.opcao[aria-checked="true"] .r{border:7px solid var(--verde-med)}
+.cta-verde{background:var(--verde-med);box-shadow:0 6px 0 #355810;font-size:18px;margin-bottom:4px}.cta-verde:disabled{opacity:.45;cursor:default}
+.relogio{display:grid;grid-template-columns:1fr 1fr;gap:10px;text-align:center}
+.relogio div{background:var(--verde-claro);border-radius:16px;padding:12px 6px}
+.relogio small{display:block;font-size:12px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:var(--lima-esc)}
+.relogio b{display:block;font-size:40px;font-weight:900;color:var(--verde-med);line-height:1.1;letter-spacing:-1.5px}
+.relogio span{font-size:13px}
+.plano .dica{border-top:1.5px solid #DDEBBE;padding-top:10px}
+.mecanismo{background:var(--verde-esc);color:#fff;border-radius:22px;padding:20px 20px 22px;margin:22px 0;text-align:center}
+.mecanismo i{display:block;font-style:normal;font-size:12px;font-weight:800;letter-spacing:2px;color:var(--lima)}
+.mecanismo b{display:block;color:#fff;font-size:20px;line-height:1.3;margin:8px 0}
+.mecanismo span{font-size:15px;line-height:1.5;color:#E6F0D2}
 </style></head><body>
 <div class="blob b1"></div><div class="blob b2"></div>
 <div class="topo"><div class="selo"><span class="ck">✓</span><span class="tx">Compra aprovada</span></div></div>
 <div class="wrap">
 <p class="ok-linha">Seu acesso ao Musa Fit chega no WhatsApp e no e-mail em instantes.</p>
 
+<div id="tela-quiz">
 <h1>Chá + jejum: a barriga seca mais rápido.</h1>
-<p class="lead">Seu resultado já começou com o chá. Com o jejum junto, ele chega mais rápido.</p>
+<section class="calc quiz" id="quiz" aria-label="Monte seu jejum">
+<button type="button" class="voltar" id="voltar" hidden>‹ Voltar</button>
+<div class="passos" id="passos" aria-label="Passo 1 de 3"><i class="on"></i><i></i><i></i></div>
+<span class="eyebrow">Vamos montar o seu jejum</span>
+<h2 id="q-titulo"></h2>
+<p class="q-sub" id="q-sub"></p>
+<div class="opcoes" id="opcoes" role="radiogroup"></div>
+<button type="button" class="cta cta-verde" id="seguir" disabled>Continuar</button>
+</section>
+<a class="no" href="#" style="display:block;text-decoration:underline">Não, obrigada. Prefiro continuar somente com o Musa Fit.</a>
+</div>
 
-<p class="ouca">Ouça a Carol antes de continuar ▼</p>
-<section class="upsell-audio" aria-label="Áudio da Carol"><div class="g-aud" role="group" aria-label="Áudio da Carol"><audio class="g-aud-el" preload="metadata" src="1bf1243b.mp3"></audio><span class="g-aud-foto" aria-hidden="true"><img src="c5f57c67.jpg" alt=""><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10v2a7 7 0 0 0 14 0v-2M12 19v3M8 22h8"/></svg></i></span><button type="button" class="g-aud-vel" aria-label="Velocidade 1x" hidden>1x</button><button type="button" class="g-aud-play" aria-label="Tocar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3l16 9-16 9z"/></svg></button><div class="g-aud-meio"><div class="g-aud-onda" tabindex="0" role="slider" aria-valuemin="0" aria-valuemax="93" aria-valuenow="0" aria-label="Posição do áudio" style="touch-action:none"><i class="g-aud-bola" style="left:0%"></i></div><small>0:30</small></div></div></section>
+<div id="tela-plano" hidden>
+<button type="button" class="voltar" id="refazer">‹ Voltar</button>
+<span class="eyebrow">Pronto</span>
+<h1 style="margin-top:4px">Seu plano de jejum</h1>
+<section class="calc" aria-live="polite">
+<div class="relogio">
+<div><small>Começa</small><b id="r-ini"></b><span>depois do jantar</span></div>
+<div><small>Termina</small><b id="r-fim"></b><span>do dia seguinte</span></div>
+</div>
+<div class="plano" id="r-plano"></div>
+</section>
 
-<section class="calc" aria-label="Monte seu jejum">
-<h2>Que horas você costuma jantar?</h2>
-<div class="op" data-grupo="jantar"><button type="button" data-v="19">19h</button><button type="button" data-v="20" class="on">20h</button><button type="button" data-v="21">21h</button><button type="button" data-v="22">22h</button></div>
-<h2>Quantas horas de jejum?</h2>
-<div class="op tres" data-grupo="horas"><button type="button" data-v="12">12 horas</button><button type="button" data-v="14" class="on">14 horas</button><button type="button" data-v="16">16 horas</button></div>
-<div class="plano" aria-live="polite" id="plano"></div>
+<section class="mecanismo">
+<i>CHÁ + JEJUM</i>
+<b>O chá segura a fome. O jejum queima a gordura guardada.</b>
+<span>Horas sem comida fazem o corpo buscar a gordura guardada, e a barriga é uma das primeiras a secar. O chá segura a fome e a vontade de doce, por isso essas horas ficam leves. Juntos, o resultado chega mais rápido.</span>
+</section>
+
+<div class="dep"><button class="image-button" data-image="1" aria-label="Ampliar relato"><img src="2ec11903.jpg" alt="Relato de aluna: a barriga começou a secar muito mais"></button></div>
+<p class="relato">Relato de aluna. O resultado varia de pessoa para pessoa.</p>
+
+<section class="calc" style="text-align:center">
+<h2 style="margin-top:0" id="r-hoje"></h2>
 <div class="preco"><s class="de">De R$ 47,00</s><b>R$ 19,90</b><span>por mês</span><em>Menos de R$ 0,70 por dia.</em></div>
 <a class="cta" href="https://pay.hotmart.com/N107970684W?off=8oyyimoe">QUERO SECAR MINHA BARRIGA MAIS RÁPIDO</a>
 </section>
 
-<div class="dep"><button class="image-button" data-image="2" aria-label="Ampliar relato 1"><img src="6e848787.jpg" alt="Relato de aluna: chá e jejum, 4 kg em 7 dias"></button></div>
-<p class="relato">Relato de aluna. O resultado varia de pessoa para pessoa.</p>
-
-<section class="bloco">
-<h2>Por que os dois juntos dão mais resultado</h2>
-<ul class="lista">
-<li><span><b>O chá segura a fome e a vontade de doce.</b> Por isso as horas sem comer ficam leves.</span></li>
-<li><span><b>Horas sem comida fazem o corpo buscar a gordura guardada.</b> A barriga é uma das primeiras a secar.</span></li>
-<li><span><b>8 dessas horas você está dormindo.</b> Acordada, você só deixa de beliscar depois do jantar.</span></li>
-</ul>
-</section>
+<p class="ouca">Ouça a Carol explicando em 30 segundos ▼</p>
+<section class="upsell-audio" aria-label="Áudio da Carol"><div class="g-aud" role="group" aria-label="Áudio da Carol"><audio class="g-aud-el" preload="metadata" src="1bf1243b.mp3"></audio><span class="g-aud-foto" aria-hidden="true"><img src="c5f57c67.jpg" alt=""><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10v2a7 7 0 0 0 14 0v-2M12 19v3M8 22h8"/></svg></i></span><button type="button" class="g-aud-vel" aria-label="Velocidade 1x" hidden>1x</button><button type="button" class="g-aud-play" aria-label="Tocar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3l16 9-16 9z"/></svg></button><div class="g-aud-meio"><div class="g-aud-onda" tabindex="0" role="slider" aria-valuemin="0" aria-valuemax="93" aria-valuenow="0" aria-label="Posição do áudio" style="touch-action:none"><i class="g-aud-bola" style="left:0%"></i></div><small>0:30</small></div></div></section>
 
 <section class="bloco">
 <h2>O app faz o difícil por você</h2>
@@ -123,42 +161,19 @@ body{padding-bottom:24px!important}
 <li><span><b>Conta as horas.</b> Você aperta começar e ele avisa quando terminou.</span></li>
 <li><span><b>Lembra da água</b> na hora que a fome bate.</span></li>
 <li><span><b>Diz o que comer</b> quando a janela abre, com a lista de compras pronta.</span></li>
-<li><span><b>Monta a sua semana</b> com 3 perguntas sobre a sua rotina.</span></li>
 <li><span><b>Guarda cada conquista.</b> Pulou um dia? Nada se perde.</span></li>
 </ul>
 </section>
 
-<section class="bloco">
-<h2>Você começa leve</h2>
-<div class="degraus"><div><b>12h</b><span>1ª semana</span></div><div><b>14h</b><span>2ª semana</span></div><div><b>16h</b><span>se quiser</span></div></div>
-<p class="sub" style="margin:14px 0 0;font-size:15.5px">Ninguém começa no difícil. Você sobe quando o corpo já se acostumou.</p>
-</section>
-
-<section class="bloco">
-<h2>Mas e se...</h2>
-<div class="obj"><b>"Vou passar fome."</b><p>O chá segura a fome. Quando ela aparece, vem em ondas e passa. O app lembra da água nessa hora.</p>
-<div class="dep"><button class="image-button" data-image="3" aria-label="Ampliar relato 2"><img src="b56c837c.jpg" alt="Relato de aluna: achei que ia passar fome"></button></div></div>
-<div class="obj"><b>"Minha rotina é corrida, tenho filhos."</b><p>Você escolhe o horário pelo seu jantar, e 8 horas acontecem enquanto você dorme. A comida da casa continua a mesma.</p>
-<div class="dep"><button class="image-button" data-image="4" aria-label="Ampliar relato 3"><img src="2cbdcc82.jpg" alt="Relato de aluna: rotina corrida, 7 kg em 24 dias"></button></div></div>
-<div class="obj"><b>"Jejum me dá dor de cabeça."</b><p>Isso vem de quem começa forte demais. Por isso você começa com 12 horas.</p></div>
-<div class="obj"><b>"Eu ataco o doce à noite."</b><p>Com a janela fechada depois do jantar, a beliscada da noite some.</p></div>
-<div class="obj"><b>"E se eu falhar um dia?"</b><p>Recomeça no dia seguinte. Suas conquistas ficam guardadas.</p></div>
-<div class="obj"><b>"É mensalidade?"</b><p>É. R$ 19,90 por mês, e você usa o app enquanto a assinatura estiver ativa.</p></div>
-</section>
-<p class="relato">Relatos de alunas. O resultado varia de pessoa para pessoa.</p>
-</div>
-
-<div class="zona"><div class="wrap">
-<div class="dep"><button class="image-button" data-image="1" aria-label="Ampliar relato 4"><img src="2ec11903.jpg" alt="Relato de aluna: a barriga começou a secar muito mais"></button></div>
 <div class="calc" style="text-align:center">
-<h2 style="margin-top:0">Seu chá já está a caminho.<br>Comece o jejum hoje, depois do jantar.</h2>
 <div class="preco"><s class="de">De R$ 47,00</s><b>R$ 19,90</b><span>por mês</span><em>Menos de R$ 0,70 por dia.</em></div>
 <a class="cta" href="https://pay.hotmart.com/N107970684W?off=8oyyimoe">QUERO SECAR MINHA BARRIGA MAIS RÁPIDO</a>
 </div>
 <a class="no" href="#" style="display:block;text-decoration:underline">Não, obrigada. Prefiro continuar somente com o Musa Fit.</a>
 <p class="cuidado">Grávida, amamentando, com diabetes ou remédio de uso contínuo? Fale com seu médico antes de começar.</p>
+</div>
 <div class="rodape"><img src="6ff1e692.png" alt="Musa Fit 60D" style="height:48px"></div>
-</div></div>
+</div>
 <dialog id="image-dialog" class="image-dialog" aria-label="Relato ampliado"><button class="close" data-close aria-label="Fechar imagem">×</button><img id="large-image" src="2ec11903.jpg" alt="Relato ampliado"></dialog>
 
 <script>const checkout=null;
@@ -250,18 +265,55 @@ document.querySelectorAll('dialog').forEach(d=>d.addEventListener('click',e=>{if
   window.addEventListener('pagehide', () => audio.pause());
   update();
 })();
-</script><script>(function(){var f=document.querySelector('.floating-offer'),z=document.querySelector('.zona');if(!f||!z)return;function u(){f.classList.toggle('some',z.getBoundingClientRect().top<window.innerHeight-40)}addEventListener('scroll',u,{passive:true});addEventListener('resize',u);u();})();</script>
-<script>(function(){
-// mesma conta da oferta aprovada no portal (OfertaJejum.tsx): 55 kcal/h dormindo, 78 kcal/h acordada, 8 h de sono
-var SONO=8,MES={12:5,14:7,16:10},s={jantar:20,horas:14},el=document.getElementById('plano');
+</script><script>(function(){
+// mesma conta da página atual: 55 kcal/h dormindo, 78 kcal/h acordada, 8 h de sono; meta 5, 7 ou 10 kg em 30 dias
+var SONO=8,MES={12:5,14:7,16:10};
+var P=[
+ {c:'jantar',t:'Que horas você costuma jantar?',s:'É depois do jantar que o seu jejum começa.',o:[[19,'Às 19h','Janto cedo'],[20,'Às 20h','O horário mais comum'],[21,'Às 21h','Depois que a casa acalma'],[22,'Às 22h ou mais tarde','Janto tarde']]},
+ {c:'fome',t:'Quando a fome mais aperta?',s:'Seu plano já começa cuidando dessa hora.',o:[['noite','À noite, depois do jantar','A beliscada e a vontade de doce'],['manha','De manhã, ao acordar','O estômago reclama cedo'],['ansiedade','Quando bate ansiedade','Como sem estar com fome']]},
+ {c:'horas',t:'Quanto você quer perder?',s:'Assim o app já sabe quantas horas o seu jejum vai ter.',o:[[12,'Até 5 kg','Para a roupa voltar a servir'],[14,'De 5 a 8 kg','Para secar a barriga de vez'],[16,'Mais de 8 kg','Para mudar o corpo todo']]}
+];
+var DICA={
+ noite:'<b>Sua hora difícil é a noite.</b> Com o jejum começando no jantar, a cozinha fecha e a beliscada da noite some.',
+ manha:'<b>Sua hora difícil é a manhã.</b> Quando a fome bater, o app lembra da água. A fome vem em ondas e passa.',
+ ansiedade:'<b>Sua hora difícil é a ansiedade.</b> O chá segura a vontade de doce, e o app lembra da água na hora que ela aparece.'
+};
+var r={},passo=0,$=function(i){return document.getElementById(i)};
 function kg(v){return v.toFixed(1).replace('.',',').replace(',0','')}
-function r(){var h=s.horas,t=55*SONO+78*(h-SONO),p=Math.round(55*SONO/t*100);
-el.innerHTML='<span>Seu jejum: das <b>'+s.jantar+'h</b> até as <b>'+((s.jantar+h)%24)+'h</b> do dia seguinte.</span>'+
-'<span><b>'+SONO+' horas você está dormindo</b> e queimando calorias. Acordada, só sobram '+(h-SONO)+' horas, e o app te acompanha nelas.</span>'+
-'<span>Nessas '+h+' horas, seu corpo queima cerca de <b>'+t.toLocaleString('pt-BR')+' calorias</b> sem nada entrando. <b>'+p+'% delas enquanto você dorme.</b></span>'+
-'<span>Somando o chá e o jejum de '+h+' horas, são até <b>'+kg(MES[h]/4)+' kg por semana</b>.</span>'+
-'<strong class="kg">Até '+MES[h]+' kg a menos em 30 dias.</strong>'+
-'<small>As alunas que juntam o chá e o jejum perdem em média de 5 a 10 kg em 30 dias. O resultado varia de pessoa para pessoa.</small>';}
-document.querySelectorAll('.op').forEach(function(g){g.querySelectorAll('button').forEach(function(x){x.setAttribute('aria-pressed',x.classList.contains('on'))});g.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;g.querySelectorAll('button').forEach(function(x){x.classList.toggle('on',x===b);x.setAttribute('aria-pressed',x===b)});s[g.dataset.grupo]=+b.dataset.v;r();});});
-r();})();</script>
+function pergunta(){
+ var q=P[passo];
+ $('q-titulo').textContent=q.t;$('q-sub').textContent=q.s;
+ $('voltar').hidden=passo===0;
+ $('passos').setAttribute('aria-label','Passo '+(passo+1)+' de 3');
+ [].forEach.call($('passos').children,function(i,n){i.classList.toggle('on',n<=passo)});
+ $('opcoes').setAttribute('aria-label',q.t);
+ $('opcoes').innerHTML=q.o.map(function(o){return '<button type="button" role="radio" class="opcao" data-v="'+o[0]+'" aria-checked="'+(r[q.c]===o[0])+'"><span class="r"></span><span><b>'+o[1]+'</b><small>'+o[2]+'</small></span></button>'}).join('');
+ $('seguir').disabled=r[q.c]===undefined;
+ $('seguir').textContent=passo===2?'Montar meu jejum':'Continuar';
+}
+function plano(){
+ var h=r.horas,j=r.jantar,t=55*SONO+78*(h-SONO),p=Math.round(55*SONO/t*100);
+ $('r-ini').textContent=j+'h';$('r-fim').textContent=((j+h)%24)+'h';
+ $('r-plano').innerHTML=
+ '<span>São <b>'+h+' horas de jejum</b>, e <b>'+SONO+' delas você está dormindo</b>. Acordada, sobram '+(h-SONO)+' horas, e o app te acompanha nelas.</span>'+
+ (h>12?'<span>Você começa com 12 horas na primeira semana e sobe para '+h+' quando o corpo já se acostumou.</span>':'<span>12 horas é o jeito leve de começar. Se quiser mais resultado, o app te ajuda a subir para 14.</span>')+
+ '<span>Nessas '+h+' horas, seu corpo queima cerca de <b>'+t.toLocaleString('pt-BR')+' calorias</b> sem nada entrando. <b>'+p+'% delas enquanto você dorme.</b></span>'+
+ '<span>Somando o chá e o jejum, são até <b>'+kg(MES[h]/4)+' kg por semana</b>.</span>'+
+ '<strong class="kg">Até '+MES[h]+' kg a menos em 30 dias.</strong>'+
+ '<small>As alunas que juntam o chá e o jejum perdem em média de 5 a 10 kg em 30 dias. O resultado varia de pessoa para pessoa.</small>'+
+ '<span class="dica">'+DICA[r.fome]+'</span>';
+ $('r-hoje').innerHTML='Seu chá já está a caminho.<br>Seu primeiro jejum começa hoje, às '+j+'h.';
+}
+function mostrar(fim){
+ $('tela-quiz').hidden=fim;$('tela-plano').hidden=!fim;
+ if(fim)plano();else pergunta();
+ window.scrollTo(0,0);
+}
+$('opcoes').addEventListener('click',function(e){var b=e.target.closest('.opcao');if(!b)return;var q=P[passo];r[q.c]=isNaN(+b.dataset.v)?b.dataset.v:+b.dataset.v;pergunta();});
+$('seguir').addEventListener('click',function(){if(passo<2){passo++;pergunta();$('quiz').scrollIntoView({block:'start'});}else mostrar(true);});
+$('voltar').addEventListener('click',function(){passo--;pergunta();});
+$('refazer').addEventListener('click',function(){passo=2;mostrar(false);});
+pergunta();
+})();</script>
+
 </body></html>
